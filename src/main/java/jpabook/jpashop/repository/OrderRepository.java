@@ -66,4 +66,15 @@ public class OrderRepository {
         ).getResultList();
     }
 
+    public List<Order> findAllWithItem() {
+        return em.createQuery(
+                "select distinct o from Order o" +
+                        " join fetch o.member m" +
+                        " join fetch o.delivery d" +
+                        //컬렉션을 페치조인하면 테이블 row 가 orderItem 에 맞춰서 뻥튀기 되서
+                        // 여러 order 값이 생기기 때문에 jpa 에서는 페이징을 막아놨다.
+                        " join fetch o.orderItems oi" +
+                        " join fetch oi.item i", Order.class)
+                .getResultList();
+    }
 }
