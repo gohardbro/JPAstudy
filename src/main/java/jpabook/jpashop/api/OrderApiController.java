@@ -6,6 +6,7 @@ import jpabook.jpashop.domain.OrderItem;
 import jpabook.jpashop.domain.OrderStatus;
 import jpabook.jpashop.repository.OrderRepository;
 import jpabook.jpashop.repository.OrderSearch;
+import jpabook.jpashop.repository.order.query.OrderFlatDto;
 import jpabook.jpashop.repository.order.query.OrderQueryDto;
 import jpabook.jpashop.repository.order.query.OrderQueryRepository;
 import lombok.Getter;
@@ -86,9 +87,10 @@ public class OrderApiController {
     }
 
     //주문조회 V6: JPA에서 DTO 직접 조회, 플랫 데이터 최적화 (쿼리 한번나감)
+    //
     @GetMapping("/api/v6/orders")
-    public List<OrderQueryDto> ordersV6() {
-        return orderQueryRepository.findAllByDto_optimization();
+    public List<OrderFlatDto> ordersV6() {
+        return orderQueryRepository.findAllByDto_flat();
     }
 
 

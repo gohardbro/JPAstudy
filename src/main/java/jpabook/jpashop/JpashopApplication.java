@@ -10,6 +10,7 @@ public class JpashopApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(JpashopApplication.class, args);
+
 	}
 
 	@Bean
